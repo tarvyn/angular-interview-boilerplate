@@ -1,0 +1,25 @@
+td {
+  border: 1px solid;
+  aspect-ratio: 1;
+  width: 50px;
+  padding: 0;
+  position: relative;
+
+  input {
+    border: none;
+    border-radius: 0;
+    width: 50px;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+}
+
+.display-none {
+  display: none;
+}
+
+.cell {
+  position: absolute;
+  inset: 0;
+}

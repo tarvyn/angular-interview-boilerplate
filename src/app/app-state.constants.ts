@@ -1,5 +1,7 @@
 import { AppState } from './app-state.model';
 
 export const initialState: AppState = {
-  test: true,
+  gridSize: 10,
+  values: {},
+  editableId: null
 };

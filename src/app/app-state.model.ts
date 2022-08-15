@@ -1,3 +1,12 @@
+export type CellId = `${number}|${number}`;
+
 export interface AppState {
-  test: boolean;
+  gridSize: number;
+  values: {
+    [id: CellId]: {
+      formula: string;
+      value: string;
+    }
+  }
+  editableId: CellId | null;
 }
