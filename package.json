@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "prettier": "prettier ./src --write",
+    "lint-scss": "stylelint --fix \"src/**/*.scss\""
   },
   "private": true,
   "dependencies": {
@@ -35,6 +37,8 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "prettier": "2.7.1",
+    "stylelint": "^13.13.1",
+    "stylelint-config-sass-guidelines": "^8.0.0",
     "typescript": "~4.7.2"
   }
 }

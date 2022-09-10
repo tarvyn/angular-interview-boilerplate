@@ -1,0 +1,34 @@
+<table
+  *ngIf="{
+    grid: grid$ | async,
+    horizontalHeader: horizontalHeader$ | async,
+    verticalHeader: verticalHeader$ | async,
+    editableId: editableId$ | async,
+    values: values$ | async
+  } as context"
+>
+  <tbody>
+    <tr>
+      <th class="th--first"></th>
+      <th *ngFor="let headerCell of context.horizontalHeader">
+        {{ headerCell }}
+      </th>
+    </tr>
+    <tr *ngFor="let row of context.grid; let rowIndex = index">
+      <th>{{context.verticalHeader?.[rowIndex]}}</th>
+      <td *ngFor="let id of row" (click)="setEditableId(id, inputElement)">
+        <div class="cell-value" *ngIf="id !== context.editableId">
+          {{context.values?.[id]?.value}}
+        </div>
+        <input
+          #inputElement
+          type="text"
+          [class.display-none]="id !== context.editableId"
+          [value]="context.values?.[id]?.formula ?? ''"
+          (change)="setCellValue(inputElement.value, id)"
+          (blur)="clearEditableId()"
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>

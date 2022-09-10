@@ -1,10 +1,4 @@
-import { AppState, CellId } from './app-state.model';
-
-export function idToCoordinates(id: CellId): Record<'row' | 'column', number> {
-  const [row, column] = id.split('|');
-
-  return { row: parseInt(row), column: parseInt(column) };
-}
+import { CellId, SheetState } from './sheet-state.model';
 
 export function coordinatesToId(
   coordinates: Record<'row' | 'column', number>
@@ -21,7 +15,7 @@ export function referenceToId(reference: string): CellId {
 
 export function resolveCellReferences(
   formula: string,
-  cellsMap: AppState['values']
+  cellsMap: SheetState['values']
 ): string {
   const cellReferences = formula.match(/([a-zA-Z]\d)/g);
 
@@ -34,4 +28,16 @@ export function resolveCellReferences(
 
     return result.replaceAll(ref, cellsMap[cellId]?.value ?? '');
   }, formula);
+}
+
+export function createArray(size: number) {
+  return Array(size).fill(null);
+}
+
+export function extractExecutable(formula: string): string {
+  return formula.replace('=', '');
+}
+
+export function isFormula(value: string): boolean {
+  return value.startsWith('=');
 }
